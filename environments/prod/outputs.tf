@@ -53,3 +53,18 @@ output "s3_bucket_name" {
 output "s3_bucket_arn" {
   value = module.s3.bucket_arn
 }
+
+output "ecr_repository_urls" {
+  description = "ECR repository URLs keyed by repository name."
+  value       = module.ecr.repository_urls
+}
+
+output "ecr_repository_arns" {
+  description = "ECR repository ARNs keyed by repository name."
+  value       = module.ecr.repository_arns
+}
+
+output "ecr_registry_id" {
+  description = "AWS account ID of the ECR registry."
+  value       = module.ecr.registry_id
+}

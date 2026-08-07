@@ -85,7 +85,7 @@ variable "rds" {
     deletion_protection                   = optional(bool, true)
     skip_final_snapshot                   = optional(bool, true)
     apply_immediately                     = optional(bool, false)
-    performance_insights_enabled           = optional(bool, false)
+    performance_insights_enabled          = optional(bool, false)
     performance_insights_retention_period = optional(number, 7)
     allowed_security_group_ids            = optional(list(string), [])
     ingress_cidr_blocks                   = optional(list(status), [])
@@ -124,6 +124,18 @@ variable "jump_server" {
     ami_rotation_days           = optional(number, 90)
     root_volume_size            = optional(number, 20)
   })
+}
+
+variable "ecr_repositories" {
+  description = "ECR repositories to create. Key becomes part of the repository name."
+  type = map(object({
+    image_tag_mutability = optional(string, "IMMUTABLE")
+    scan_on_push         = optional(bool, true)
+    encryption_type      = optional(string, "AES256")
+    kms_key              = optional(string, null)
+    max_image_count      = optional(number, 30)
+  }))
+  default = {}
 }
 
 variable "tags" {

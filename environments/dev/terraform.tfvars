@@ -59,6 +59,15 @@ s3 = {
   sse_algorithm      = "AES256"
 }
 
+ecr_repositories = {
+  app = {
+    image_tag_mutability = "IMMUTABLE"
+    scan_on_push         = true
+    encryption_type      = "AES256"
+    max_image_count      = 30
+  }
+}
+
 jump_server = {
   instance_type              = "t3.micro"
   key_name                   = "your-dev-keypair-name"

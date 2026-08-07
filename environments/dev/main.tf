@@ -97,3 +97,12 @@ module "s3" {
   sse_algorithm      = var.s3.sse_algorithm
   tags               = var.tags
 }
+
+module "ecr" {
+  source = "../../modules/ecr"
+
+  name_prefix  = var.project_name
+  environment  = var.environment
+  repositories = var.ecr_repositories
+  tags         = var.tags
+}

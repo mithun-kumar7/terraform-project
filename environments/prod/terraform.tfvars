@@ -83,6 +83,15 @@ jump_server = {
   root_volume_size            = 20
 }
 
+ecr_repositories = {
+  app = {
+    image_tag_mutability = "IMMUTABLE"
+    scan_on_push         = true
+    encryption_type      = "AES256"
+    max_image_count      = 50
+  }
+}
+
 tags = {
   Owner       = "platform-team"
   CostCenter  = "devops"
