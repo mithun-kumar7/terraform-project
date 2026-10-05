@@ -1,8 +1,12 @@
 name: Cron Test
 
 on:
+  push:
+    branches:
+      - main
+
   schedule:
-    - cron: "15 9 * * *"
+    - cron: "*/5 * * * *"
 
   workflow_dispatch:
 
@@ -11,10 +15,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Test scheduled execution
+      - name: Test
         run: |
           echo "================================"
-          echo "CRON TEST"
+          echo "WORKFLOW TRIGGERED"
           echo "Event: ${{ github.event_name }}"
           echo "UTC:   $(date -u)"
           echo "================================"
