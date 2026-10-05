@@ -2,7 +2,7 @@ name: Deploy custom Images
 
 on: 
   schedule:
-    - cron: "*/1 * * * *"
+    - cron: "*/5 * * * *"
 
   workflow_dispatch:
     inputs:
@@ -20,11 +20,12 @@ jobs:
   sync:
     runs-on: ubuntu-latest
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    # Runs a single command using the runners shell
-    - name: Send greeting
-      run: echo "Hello sync"
+      - name: Test cron
+        run: |
+          echo "Event: ${{ github.event_name }}"
+          echo "UTC time: $(date -u)"
+          echo "Cron is working!"
   # This workflow contains a single job called "greet"
   greet:
     if: github.event_name == 'workflow_dispatch'
